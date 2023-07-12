@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Script to swap out PHP versions using Homebrew on macOS
+
+if eval php -v | grep "PHP 8.2"; then
+	brew unlink php && brew link php@8.0
+elif eval php -v | grep "PHP 8.0"; then
+	brew unlink php@8.0 && brew link php
+fi
