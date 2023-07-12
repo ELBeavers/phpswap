@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
-
 # Script to swap out PHP versions using Homebrew on macOS
+
+# See which versions of PHP are installed using brew
+brew list | grep php
+
+echo "You have x versions of PHP installed. Version $version is running. Select another from the list to switch to that version or hit ctrl-z to exit.
 
 if eval php -v | grep "PHP 8.2"; then
 	brew unlink php && brew link php@8.0
