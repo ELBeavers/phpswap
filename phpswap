@@ -1,13 +1,22 @@
 #!/usr/bin/env bash
 # Script to swap out PHP versions using Homebrew on macOS
 
-# See which versions of PHP are installed using brew
-brew list | grep php
+# Find the current running version and offer available options to switch
+# version=$(php -v)
+# echo "You are running ${version:0:7}."
 
-echo "You have x versions of PHP installed. Version $version is running. Select another from the list to switch to that version or hit ctrl-z to exit.
+# # List all versions of PHP installed using brew
+# php_versions=$(brew list | grep php)
+# echo $php_versions
 
-if eval php -v | grep "PHP 8.2"; then
-	brew unlink php && brew link php@8.0
-elif eval php -v | grep "PHP 8.0"; then
-	brew unlink php@8.0 && brew link php
+if eval php -v | grep "PHP 8.2" >> /dev/null; then
+	echo "You are running PHP 8.2. Switching to 8.0."
+	brew unlink php >> /dev/null && brew link php@8.0 >> /dev/null
+elif eval php -v | grep "PHP 8.0" >> /dev/null; then
+	echo "You are running PHP 8.0. Switching to 8.2."
+	brew unlink php@8.0 >> /dev/null && brew link php >> /dev/null
 fi
+
+# Report the new running version
+version=$(php -v)
+echo -e "\nYou are now running ${version:0:7}."
