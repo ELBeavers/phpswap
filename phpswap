@@ -12,4 +12,4 @@ fi
 
 # Report the new running version
 version=$(php -v)
-echo -e "\nYou are now running ${version:0:7}."
+printf "\nYou are now running ${version:0:7}.\n"
