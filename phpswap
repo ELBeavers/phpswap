@@ -3,11 +3,14 @@
 
 # Find the current running version and offer available options to switch
 version=$(php -v)
-printf "You are running ${version:0:7}. You have these versions installed. \nSelect one by typing the number and pressing return \nor press ctrl-z to exit and continue running ${version:0:7}.\n"
+printf "You are running ${version:0:7}. You have these versions installed. \nSelect one by typing the number and pressing return \nor press ctrl-c to exit and continue running ${version:0:7}.\n "
 
 ## List all versions of PHP installed using brew
 php_versions=$(brew list | grep php)
 echo $php_versions
+
+## Ask user how to proceed
+read -p "Enter your selection: " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 
 # if eval php -v | grep "PHP 8.2" >> /dev/null; then
 # 	echo "You are running PHP 8.2. Switching to 8.0."
